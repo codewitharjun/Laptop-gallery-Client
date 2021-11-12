@@ -5,11 +5,15 @@ import Home from './Pages/Home/Home/Home';
 import PageNotFound from './Pages/PageNotFound/PageNotFound';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import Laptop from './Pages/Home/Laptop/Laptop';
-import Login from './Pages/Login/Login/Login'
+import Login from './Pages/Login/Login/Login';
+import AuthProvider from './Pages/contexts/AuthProvider';
+import Register from './Pages/Login/Register/Register';
+import PrivetRouter from './Pages/Login/PrivetRouter/PrivetRouter';
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
         <Router>
           <Switch>
             <Route exact path="/">
@@ -24,14 +28,18 @@ function App() {
             <Route path="/login">
               <Login></Login>
             </Route>
-            <Route path="/dashboard">
-              <Dashboard></Dashboard>
+            <Route path="/register">
+              <Register></Register>
             </Route>
+            <PrivetRouter path="/dashboard">
+              <Dashboard></Dashboard>
+            </PrivetRouter>
             <Route path="*">
               <PageNotFound></PageNotFound>
             </Route>
           </Switch>
         </Router>
+      </AuthProvider>
     </div>
   );
 }
