@@ -9,6 +9,8 @@ import Login from './Pages/Login/Login/Login';
 import AuthProvider from './Pages/contexts/AuthProvider';
 import Register from './Pages/Login/Register/Register';
 import PrivetRouter from './Pages/Login/PrivetRouter/PrivetRouter';
+import Details from './Pages/Home/Details/Details';
+import BuyNow from './Pages/OrderBuy/BuyNow/BuyNow';
 
 function App() {
   return (
@@ -24,6 +26,12 @@ function App() {
             </Route>
             <Route path="/laptops">
               <Laptop></Laptop>
+            </Route>
+            <PrivetRouter path="/buynaw">
+              <BuyNow></BuyNow>
+            </PrivetRouter>
+            <Route path="/details/:productid">
+              <Details></Details>
             </Route>
             <Route path="/login">
               <Login></Login>

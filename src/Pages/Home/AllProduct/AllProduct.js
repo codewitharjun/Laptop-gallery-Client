@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card, Col, Nav } from "react-bootstrap";
 import { HashLink } from "react-router-hash-link";
 
-const Product = ({item, addToCart}) => {
+const AllProduct = ({item, addToCart}) => {
     const {id, productName, display, ram, ssd, price, description, img, reating} = item;
     
     console.log(item, id)
@@ -21,8 +21,11 @@ const Product = ({item, addToCart}) => {
                     <Card.Text className="package">{price}</Card.Text>
                     <div  className="package-btn">
                         <Nav.Link as={HashLink} to={`details/${id}`}>
-                        <Button variant="warning">More Details</Button></Nav.Link>
-                        <Button onClick={ () => addToCart(item)} variant="warning">Add to Cart</Button>
+                            <Button variant="warning">More Details</Button>
+                        </Nav.Link>
+                        <Nav.Link as={HashLink} to='/buynaw'>
+                            <Button variant="warning">Buy Now</Button>
+                        </Nav.Link>
                     </div>
                 </Card.Body>
             </Card>
@@ -30,7 +33,7 @@ const Product = ({item, addToCart}) => {
     );
 };
 
-export default Product;
+export default AllProduct;
 
 // .package {
 //     margin: 0;

@@ -1,8 +1,12 @@
 import React from "react";
+import useAuth from "../../Hooks/useAuth";
 import DashboardMenu from "../DashboardMenu/DashboardMenu";
 import DashboardNav from "../DashboardNav/DashboardNav";
 
-const AddAdmin = () => {
+
+const AddProduct = () => {
+
+    const {user} = useAuth();
 
     
     return (
@@ -11,11 +15,11 @@ const AddAdmin = () => {
             <div>
                 <DashboardMenu></DashboardMenu>
                 <div>
-                    <h2>This is Admin</h2>
+                    <h2>This is Add product page</h2>
                 </div>
             </div>
         </div>
     );
 };
 
-export default AddAdmin;
+export default AddProduct;

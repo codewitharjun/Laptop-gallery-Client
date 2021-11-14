@@ -18,9 +18,11 @@ const NavBar = () => {
               <Navbar.Collapse className="justify-content-end">
                   <Nav.Link as={HashLink} to="/home">Home</Nav.Link>
                   <Nav.Link as={HashLink} to="/laptops">Laptops</Nav.Link>
-                  <Nav.Link as={HashLink} to="/dashboard">Dashboard</Nav.Link>
                     {user?.email?
-                      <Button onClick={logOut} variant="link">LogOut</Button> : 
+                      <span>
+                        <Nav.Link as={HashLink} to="/dashboard">Dashboard</Nav.Link>
+                        <Button onClick={logOut} variant="link">LogOut</Button>
+                      </span> : 
                       <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     }
               </Navbar.Collapse>

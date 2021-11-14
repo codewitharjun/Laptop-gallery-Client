@@ -1,0 +1,24 @@
+.footer {
+    text-align: center;
+    color: white;
+    background: rgb(21, 6, 70);
+    width: 100%;
+    height: 140px;
+}
+.footer div {
+    padding-top: 30px;
+}
+.ftr-btn-style {
+    border: none;
+    padding: 3px 10px;
+    background: hotpink;
+    color: rgb(253, 253, 253);
+}
+
+.notfound {
+    max-height: 550px;
+}
+
+.cart-style {
+    font-size: 20px;
+}

@@ -1,11 +1,13 @@
 import React from "react";
+import Footer from "../../Shared/Footer/Footer";
 import NavBar from "../NavBar/NavBar";
-import Products from "../Products/Products";
+import AllProducts from "../AllProducts/AllProducts";
 const Laptop = () => {
     return (
         <div>
             <NavBar></NavBar>
-            <Products></Products>
+            <AllProducts></AllProducts>
+            <Footer></Footer>
         </div>
     );
 };

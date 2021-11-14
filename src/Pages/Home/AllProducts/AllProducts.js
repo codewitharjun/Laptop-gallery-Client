@@ -1,8 +1,8 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import Product from "../Product/Product";
+import AllProduct from "../AllProduct/AllProduct";
 
-const Products = () => {
+const AllProducts = () => {
 
     const laptops = [
         {
@@ -75,15 +75,15 @@ const Products = () => {
         
     ];
 
-    const addToCart = () => {
+    const addToCart = item => {
         alert('Add to cart click');
+        console.log(item);
     };
 
-    let count = 0;
-
     return (
-        <div className="mt-4">
-            <h1 className="my-4">Top Rated Laptop</h1>
+        <div>
+            <div className="mt-4">
+            <h1 className="my-4">Our Laptop Gallery</h1>
             <Row xs={1} md={2} className="w-100">
                 <Col md="4" lg="3" bg="primary">
                     <Row className="bulleting-container">
@@ -93,24 +93,18 @@ const Products = () => {
                 <Col md="8" lg="9">
                     <Row xs={1} md={2} lg={3} className="package-container g-4">
                         {
-                            laptops.map( item => {
-                                count += 1;
-                                if(count < 5) {
-                                    return <Product 
-                                   key={item.id} 
-                                   item={item} 
-                                   addToCart={addToCart}
-                                   ></Product>
-                                } else {
-                                    return ;
-                                }
-                            })
+                            laptops.map( item => <AllProduct
+                                key={item.id} 
+                                item={item} 
+                                addToCart={addToCart}
+                                ></AllProduct>)
                         }
                     </Row>
                 </Col>
             </Row>
         </div>
+        </div>
     );
 };
 
-export default Products;
+export default AllProducts;
