@@ -10,64 +10,27 @@ const useFirebade = () => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password1, setPassword1] = useState('')
-    const [password2, setPassword2] = useState('')
-
     const auth = getAuth();
-
-    // Start Register  New Account 
-
-    const handleNameChange = e => {
-        setName(e.target.value);
-    }
-    console.log(name);
     
-    const handleEmailChange = e => {
-       setEmail(e.target.value);
-    }
-    console.log(email);
-    
-    const handlePasswordChange1 = e => {
-        setPassword1(e.target.value);
-    }
-    console.log(password1);
-    
-    const handlePasswordChange2 = e => {
-        setPassword2(e.target.value);
-    }
-    
-    const handleRegistration = e => {
-        e.preventDefault();
+    const registerUser = (name, email, password) => {
         setIsLoading(true);
         
-        if (password1 !== password2) {
-            setError('Yoru Password did not match.')
-            return;
-        };
-        
-        if (password2.length < 6) {
-            setError('Password must be at least 6 characters long.')
-            return;
-        };
-        
-        createUserWithEmailAndPassword(auth, email, password1)
-        .then(result => {
-            const user = result.user;
+        createUserWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+            const user = userCredential.user;
             setError('')
-            setUserName();
+            setUserName(name);
             console.log(user);
         })
         .catch(error =>{
             setError(error.message);
-            setIsLoading(false);
         })
         .finally(() => setIsLoading(false))
     }
 
     // Add User Name
-    const setUserName =() => {
+    const setUserName = name => {
+        console.log(name);
         updateProfile(auth.currentUser, {displayName: name})
         .then( result => {
 
@@ -75,11 +38,9 @@ const useFirebade = () => {
     }
 
     // LogIn 
-    const handleLogIn = e => {
-        e.preventDefault();
+    const loginUser = (email, password) => {
         setIsLoading(true);
-        console.log(email, password1);
-        signInWithEmailAndPassword(auth, email, password1)
+        signInWithEmailAndPassword(auth, email, password)
         .then(result => {
             setError('')
             // history.push(redirect_url)
@@ -88,7 +49,6 @@ const useFirebade = () => {
             setError(error.message);
         })
         .finally(() => setIsLoading(false))
-
     }
 
 
@@ -127,13 +87,8 @@ const useFirebade = () => {
         error,
         setError,
         isLoading,
-        setIsLoading,
-        handleRegistration,
-        handleNameChange,
-        handleEmailChange,
-        handlePasswordChange1,
-        handlePasswordChange2,
-        handleLogIn,
+        registerUser,
+        loginUser,
         signInUsingGoogle,
         logOut
     }
