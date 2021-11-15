@@ -3,10 +3,12 @@ import { Button, Spinner} from "react-bootstrap";
 import { Link, useLocation, useHistory} from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
- const Login = () => {
-
+const Login = () => {
+    
     const [loginData, setLoginData] = useState({});
     const { setIsLoading, isLoading, loginUser, signInUsingGoogle, setError, error} = useAuth();
+    const location = useLocation();
+    const history = useHistory();
 
     const handleCollectData = e => {
         const field = e.target.name;
@@ -16,41 +18,13 @@ import useAuth from "../../Hooks/useAuth";
         setLoginData(newLogInData);
     }
 
-    const handleEmailLogIn= e => {
+    const handleEmailLogIn = e => {
         e.preventDefault();
-        loginUser(loginData.email, loginData.password);
+        loginUser(loginData.email, loginData.password, location, history);
     }
 
-
-
-
-    // const location = useLocation();
-    // const history = useHistory();
-    // const redirect_url = location.state?.from || '/home';
-    
-    // const handleEmailLogIn = () => {
-    //     handleLogIn()
-    //     .then(result => {
-    //         setError('')
-    //         history.push(redirect_url)
-    //     })
-    //     .catch(error =>{
-        //         setError(error.message);
-        //     })
-        //     .finally(() => setIsLoading(false))
-    // };
-
         const handleGoogleLogIn = () => {
-            isLoading(true);
-            signInUsingGoogle()
-            .then((result) => {
-                setError('')
-                // history.push(redirect_url)
-           })
-           .catch(error =>{
-               setError(error.message);
-           })
-           .finally(() => setIsLoading(false))
+            signInUsingGoogle(location, history)
         };
 
 

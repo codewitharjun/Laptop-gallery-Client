@@ -27,7 +27,7 @@ function App() {
             <Route path="/laptops">
               <Laptop></Laptop>
             </Route>
-            <PrivetRouter path="/buynaw">
+            <PrivetRouter path="/buynaw/:productid">
               <BuyNow></BuyNow>
             </PrivetRouter>
             <Route path="/details/:productid">

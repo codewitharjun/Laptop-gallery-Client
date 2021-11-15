@@ -12,38 +12,81 @@ const useFirebade = () => {
 
     const auth = getAuth();
     
-    const registerUser = (name, email, password) => {
+    // register user start
+    const registerUser = (name, email, password, history ) => {
         setIsLoading(true);
         
         createUserWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
             const user = userCredential.user;
             setError('')
+            const newUser = {email, displayName: name}
+            setUser(newUser);
+            // save user to  database
+            console.log(email, name)
+            saveUser(email, name, 'POST');
             setUserName(name);
+            history.replace('/');
             console.log(user);
         })
         .catch(error =>{
             setError(error.message);
         })
         .finally(() => setIsLoading(false))
-    }
-
+    };
+    // save user to database 
+    const saveUser = (email, displayName, method) => {
+        const user = {email, displayName}; 
+        console.log(user);
+        fetch('http://localhost:5000/users', {
+            method: method,
+            header: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then()
+    };
     // Add User Name
     const setUserName = name => {
-        console.log(name);
-        updateProfile(auth.currentUser, {displayName: name})
-        .then( result => {
-
+        updateProfile(auth.currentUser, {
+            displayName: name})
+        .then( () => {
+        }).catch((error) => {
+            setError(error);
         })
     }
 
-    // LogIn 
-    const loginUser = (email, password) => {
+    // register user start
+    // LogIn start
+
+    const loginUser = (email, password, location, history) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
-        .then(result => {
+        .then(() => {
             setError('')
-            // history.push(redirect_url)
+            const destination = location?.state?.from || '/';
+            history.replace(destination);
+        })
+        .catch(error =>{
+            setError(error.message);
+        })
+        .finally(() => setIsLoading(false))
+    }
+    
+    // LogIn end
+    // LogIn with Google start 
+    
+    const signInUsingGoogle = (location, history) => {
+        setIsLoading(true);
+        const googleProvider = new GoogleAuthProvider();
+        signInWithPopup(auth, googleProvider)
+        .then((result) => {
+            setError('')
+            const user = result.user;
+            saveUser( user.email, user.displayName, 'PUT' );
+            const destination = location?.state?.from || '/';
+            history.replace(destination);
         })
         .catch(error =>{
             setError(error.message);
@@ -51,16 +94,9 @@ const useFirebade = () => {
         .finally(() => setIsLoading(false))
     }
 
+    // LogIn with Google end
+    // observe user state change start
 
-    // LogIn with Google 
-    const signInUsingGoogle = () => {
-        setIsLoading(true);
-        const googleProvider = new GoogleAuthProvider();
-        return signInWithPopup(auth, googleProvider)
-        
-    }
-    
-    // observe user state change
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, user => {
             if(user){
@@ -70,17 +106,21 @@ const useFirebade = () => {
                 setUser({});
             }
             setIsLoading(false);
-          });
-          return () => unsubscribed;
+        });
+        return () => unsubscribed;
     }, [])
 
-    
-    const logOut = () => {
-        setIsLoading(true);
-        signOut(auth)
-        .then(()=>{})
-        .finally(() => setIsLoading(false));
-    }
+    // observe user state change end
+    // Logout start
+
+        const logOut = () => {
+            setIsLoading(true);
+            signOut(auth)
+            .then(()=>{})
+            .finally(() => setIsLoading(false));
+        }
+
+    // Logout end
     
     return {
         user,

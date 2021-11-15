@@ -3,9 +3,9 @@ import { Button, Card, Col, Nav } from "react-bootstrap";
 import { HashLink } from "react-router-hash-link";
 
 const AllProduct = ({item, addToCart}) => {
-    const {id, productName, display, ram, ssd, price, description, img, reating} = item;
+    const {_id, productName, display, ram, ssd, price, description, img, reating} = item;
     
-    console.log(item, id)
+    console.log(item, _id)
 
     return (
         <Col>
@@ -20,10 +20,10 @@ const AllProduct = ({item, addToCart}) => {
                     <Card.Text className="package">{reating}</Card.Text>
                     <Card.Text className="package">{price}</Card.Text>
                     <div  className="package-btn">
-                        <Nav.Link as={HashLink} to={`details/${id}`}>
+                        <Nav.Link as={HashLink} to={`details/${_id}`}>
                             <Button variant="warning">More Details</Button>
                         </Nav.Link>
-                        <Nav.Link as={HashLink} to='/buynaw'>
+                        <Nav.Link as={HashLink} to={`buynaw/${_id}`}>
                             <Button variant="warning">Buy Now</Button>
                         </Nav.Link>
                     </div>

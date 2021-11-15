@@ -1,5 +1,5 @@
 import React from "react";
-import { Button} from "react-bootstrap";
+import { Button, Nav} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
@@ -12,20 +12,17 @@ import {
 
 const DashboardMenu = () => {
     
-    let { url } = useRouteMatch();
+    const url = '/dashboard';
     const { user } = useAuth();
 
     
     return (
-        <div> 
-            {user?.email?
-                <Link to={`${url}/manageorder`}><Button color="inherit">Manage Orders</Button></Link> :
-                <Link to={`${url}/order`}><Button color="inherit">Manage Orders</Button></Link>
-            }
-            {user?.email && <div>
-                <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
-                <Link to={`${url}/addadmin`}><Button color="inherit">Add Admin</Button></Link>
-                <Link to={`${url}/addproduct`}><Button color="inherit">Add Product</Button></Link>
+        <div className="mt-20">
+            {!user?.email && <Link>Manage Orders</Link>}
+            {user?.email && <div className="flex-colum">
+                <Link style={{textDecoration: 'none'}} className="my-2" to={`${url}`}>Dashboard</Link>
+                <Link style={{textDecoration: 'none'}} to={`${url}/addadmin`}>Add Admin</Link>
+                <Link style={{textDecoration: 'none'}} className="my-2" to={`${url}/addproduct`}>Add Product</Link>
             </div>}
         </div>
     );

@@ -1,12 +1,13 @@
 import React, {useState } from "react";
-import { Button, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Alert, Button, Spinner } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 
 const Register = () => {
     const [regiData, setRegiData] = useState({});
-    const {registerUser, signInUsingGoogle, setIsLoading, isLoading, setError, error} = useAuth();
+    const {user, registerUser, isLoading, setError, error} = useAuth();
+    const history = useHistory();
 
     const handleCollectData = e => {
         const field = e.target.name;
@@ -29,21 +30,8 @@ const Register = () => {
             return;
         };
         console.log(regiData);
-        registerUser(regiData.name, regiData.email, password)
+        registerUser(regiData.name, regiData.email, password, history)
     }
-
-    const handleGoogleLogIn = () => {
-        setIsLoading(true);
-        signInUsingGoogle()
-        .then((result) => {
-            setError('')
-            // history.push(redirect_url)
-       })
-       .catch(error =>{
-           setError(error.message);
-       })
-       .finally(() => setIsLoading(false))
-    };
 
 
     return (
@@ -63,12 +51,16 @@ const Register = () => {
                     <input className="my-2" type="submit" name="" id="" value="Submit"/>
                 </form>
 
-                <p className="text-danger">{error}</p>
-                <p>Allready You Have Account? <Link style={{textDecoration: 'none'}} to="/login">Login Here</Link></p>
-               <p className="mt-5 text-success">You can also Register using Google</p>
-               <Button className="mb-5" onClick={handleGoogleLogIn} variant="warning"><i className="fab fa-google google-style"></i></Button>
+                {error && <Alert variant="danger" style={{width: "50%"}} >
+                    <p>{error}</p>
+                </Alert>}
+
+                <p>Allready You Have Account? <Link to="/login">Login Here</Link></p>
             </div>}
             {isLoading && <Spinner animation="grow" variant="info" />}
+            {user?.email && <Alert variant="success" >
+                <p>Hi {user.name}, you register successfully</p>
+            </Alert>}
         </div>
     );
  };

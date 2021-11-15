@@ -19,9 +19,9 @@ const NavBar = () => {
                   <Nav.Link as={HashLink} to="/home">Home</Nav.Link>
                   <Nav.Link as={HashLink} to="/laptops">Laptops</Nav.Link>
                     {user?.email?
-                      <span>
+                      <span className="dis-flex">
                         <Nav.Link as={HashLink} to="/dashboard">Dashboard</Nav.Link>
-                        <Button onClick={logOut} variant="link">LogOut</Button>
+                        <Button style={{textDecoration: 'none'}} onClick={logOut} variant="link">LogOut</Button>
                       </span> : 
                       <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     }
