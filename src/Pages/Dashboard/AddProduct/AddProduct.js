@@ -24,7 +24,7 @@ const AddProduct = () => {
         e.preventDefault();
         console.log(addItem);
         // sent data to server for Add an Item
-        fetch('http://localhost:5000/laptops', {
+        fetch('https://sheltered-badlands-24462.herokuapp.com/laptops', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

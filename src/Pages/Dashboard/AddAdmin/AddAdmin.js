@@ -18,7 +18,7 @@ const AddAdmin = () => {
         console.log(email);
         alert('Add Admin successfully');
         // // sent data to server for Add an Item
-        // fetch('http://localhost:5000/laptops', {
+        // fetch('https://sheltered-badlands-24462.herokuapp.com/laptops', {
         //     method: 'POST',
         //     headers: {
         //         'content-type': 'application/json'

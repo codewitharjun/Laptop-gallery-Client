@@ -38,7 +38,7 @@ const useFirebade = () => {
     const saveUser = (email, displayName, method) => {
         const user = {email, displayName}; 
         console.log(user);
-        fetch('http://localhost:5000/users', {
+        fetch('https://sheltered-badlands-24462.herokuapp.com/users', {
             method: method,
             header: {
                 'content-type': 'application/json'

@@ -9,7 +9,7 @@ const AllProducts = () => {
     const [laptops, setLaptops] = useState([]);
 
     useEffect( () => {
-        fetch('http://localhost:5000/laptops')
+        fetch('https://sheltered-badlands-24462.herokuapp.com/laptops')
         .then(res => res.json())
         .then(data => {
             setLaptops(data)

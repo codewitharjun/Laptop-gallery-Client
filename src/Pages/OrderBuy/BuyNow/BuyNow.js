@@ -18,7 +18,7 @@ const BuyNow = () => {
     
     
     useEffect( () => {
-        const url = `http://localhost:5000/laptops/${id}`;
+        const url = `https://sheltered-badlands-24462.herokuapp.com/laptops/${id}`;
         fetch(url)
         .then(res => res.json())
         .then(data => {
@@ -48,7 +48,7 @@ const BuyNow = () => {
         console.log(allData);
         alert('Thanks for buying with us')
         // sent data to server in order iterms
-        fetch('http://localhost:5000/orders', {
+        fetch('https://sheltered-badlands-24462.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
