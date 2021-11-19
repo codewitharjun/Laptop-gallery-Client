@@ -1,70 +1,60 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Laptop Galerry
 
-## Available Scripts
+Laptop Gallery is mordon and smart online shop. you can purchers any kinds of laptop and accessories in this site. We are best in qulity and price. you cane compare us 
+any others online store. We also challenge you and also offer you we are bes in our counties.
 
-In the project directory, you can run:
+## Contact Info : 
 
-### `yarn start`
+Address : 124, Kochukhet, Dhaka.
+Web : https://clever-noyce-96999d.netlify.app/
+Facebook : https://web.facebook.com
+Contact Number : +8800123459876
+Emergency : +8800999
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Our Speciality :
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. We offere you letest collection 
+2. Corona health facilities.
+3. Mission hospitals.
+4. The modern hospital.
+5. Mental health facilities.
+6. Special Baby & Mother Care.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### History of hospitals :
 
-### `yarn build`
+As early as 4000 BCE, religions identified certain of their deities with healing. The temples of Saturn, and later of Asclepius in Asia Minor, were recognized as 
+healing centres. Brahmanic hospitals were established in Sri Lanka as early as 431 BCE, and King Ashoka established a chain of hospitals in Hindustan about 230 BCE. 
+Around 100 BCE the Romans established hospitals (valetudinaria) for the treatment of their sick and injured soldiers; their care was important because it was upon 
+the integrity of the legions that the power of ancient Rome was based. Ruins of the sanctuary of Asclepius at Cos, Greece Ruins of the sanctuary of Asclepius at Cos, 
+GreeceCharles Walker It can be said, however, that the modern concept of a hospital dates from 331 CE when Roman emperor Constantine I (Constantine the Great), 
+having been converted to Christianity, abolished all pagan hospitals and thus created the opportunity for a new start. Until that time disease had isolated the 
+sufferer from the community. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Ownership and control
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The issues of hospital ownership and control underwent significant analysis and change in the late 20th and early 21st centuries. Such transformation was prevalent 
+in developed countries, particularly those in which fiscal sustainability was problematic.In many countries nearly all hospitals are owned and operated by the 
+government. In Great Britain, except for a small number run by religious orders or serving special groups, most hospitals are within the National Health Service. 
+The local hospital management committee answers directly to the regional hospital board and ultimately to the Department of Health and Social Security. In the 
+United States most hospitals are neither owned nor operated by governmental agencies. In some instances hospitals that are part of a regional health authority 
+are governed by the board of the regional authority, and hence these hospitals no longer have their own boards.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### Financing
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Financing
+Because hospitals may serve specific populations and because they may be not-for-profit or for-profit, there exist a variety of mechanisms for hospital financing. 
+Almost universally, hospital-construction costs are met at least in some part by governmental contributions. Operating costs, however, are taken care of in 
+different ways. For example, funds may come from private endowments or gifts, general funds of some unit of government, funds collected by insurance carriers 
+from subscribers, or some combination thereof. In some countries, operating costs may be supplemented in part by public
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+All Links and Code: 
+Our  Wbsite Link : https://clever-noyce-96999d.netlify.app/
+Our Github Code : https://github.com/Programming-Hero-Web-Course3/healthcare-related-website-codewitharjun
+Our Facebook Group Link : https://web.facebook.com/groupa_None/
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
