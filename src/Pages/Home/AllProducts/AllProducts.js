@@ -34,8 +34,9 @@ const AllProducts = () => {
                 <h1 className="text-primary pt-3 my-4" >Our Laptop Gallery</h1>
                 <Row xs={1} md={2} className="w-100">
                     <Col className="bg-lftbr" md="4" lg="3" bg="primary">
-                            <h3 className="text-primary pt-2">Select by catagory</h3>
-                            <ProRightNav></ProRightNav>
+                            <Row>
+                                <ProRightNav></ProRightNav>
+                            </Row>
                     </Col>
                     <Col md="8" lg="9">
                         <Row xs={1} md={2} lg={3} className="package-container">
