@@ -1,15 +1,18 @@
 import React, {useState} from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import useAuth from "../../Hooks/useAuth";
 import DashboardMenu from "../DashboardMenu/DashboardMenu";
 import DashboardNav from "../DashboardNav/DashboardNav";
+import { useHistory } from "react-router";
 
 
 const AddProduct = () => {
-
-    const {user} = useAuth();
+    
+    const {user, authToken, isLoading} = useAuth();
     const initial = {reating: "0"}
     const [addItem, setAddItem] = useState(initial);
+    const history = useHistory();
+
 
 
     const handleCollectData = e => {
@@ -27,6 +30,7 @@ const AddProduct = () => {
         fetch('https://sheltered-badlands-24462.herokuapp.com/laptops', {
             method: 'POST',
             headers: {
+                'authorization': `Bearer ${authToken}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(addItem)
@@ -35,18 +39,19 @@ const AddProduct = () => {
         .then(data => {
             console.log(data);
             alert('Add product successfully');
+            history.replace('/dashboard');
         })
     }
     
     return (
-        <div>
+        <div className="bg-lred2">
             <DashboardNav></DashboardNav>
             <Row xs={1} md={2} className="w-100">
                 <Col md="3" lg="2" className="bg-gray">
                     <DashboardMenu className="flex-colum"></DashboardMenu>
                 </Col>
-                <Col md="8" lg="9">
-                    <Row xs={1} md={2} lg={3} className="package-container g-4">
+                {!isLoading && <Col md="8" lg="9">
+                    <Row className="package-container g-4">
                         <div className="add-package">
                             <br/>
                             <br/>
@@ -86,7 +91,8 @@ const AddProduct = () => {
                             </form>
                         </div>
                     </Row>
-                </Col>
+                </Col>}
+                {isLoading && <Spinner animation="grow" variant="info" />}
             </Row>
         </div>
     );

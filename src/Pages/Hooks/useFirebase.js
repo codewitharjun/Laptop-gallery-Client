@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, getIdToken, signOut } from "firebase/auth";
 import {useState, useEffect} from 'react';
 import initializeAuthentication from "../Login/firebase/firebase.init";
 
@@ -9,6 +9,8 @@ const useFirebade = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [admin, setAdmin] = useState(false);
+    const [authToken, setAuthToken] = useState('');
 
     const auth = getAuth();
     
@@ -38,9 +40,10 @@ const useFirebade = () => {
     const saveUser = (email, displayName, method) => {
         const user = {email, displayName}; 
         console.log(user);
+
         fetch('https://sheltered-badlands-24462.herokuapp.com/users', {
             method: method,
-            header: {
+            headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)
@@ -101,6 +104,10 @@ const useFirebade = () => {
         const unsubscribed = onAuthStateChanged(auth, user => {
             if(user){
                 setUser(user);
+                getIdToken(user)
+                .then(idToken => {
+                    setAuthToken(idToken);
+                })
             }
             else{
                 setUser({});
@@ -111,6 +118,16 @@ const useFirebade = () => {
     }, [])
 
     // observe user state change end
+
+    // Load Admin start
+
+    useEffect(() => {
+        fetch(`https://sheltered-badlands-24462.herokuapp.com/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
+
+    // Load Admin end
     // Logout start
 
         const logOut = () => {
@@ -124,6 +141,8 @@ const useFirebade = () => {
     
     return {
         user,
+        admin,
+        authToken,
         error,
         setError,
         isLoading,

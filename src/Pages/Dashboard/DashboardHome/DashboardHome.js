@@ -9,22 +9,20 @@ import ManageOrder from "../ManageOrder/ManageOrder";
 
 const DashboardHome = ({url}) => {
     
-    const {user} = useAuth();
-    
-    console.log(user.email);
+    const {user, admin} = useAuth();
     
     return (
-        <div>
+        <div className="bg-lred2">
             <DashboardNav></DashboardNav>
             <Row xs={1} md={2} className="w-100">
                 <Col md="3" lg="2" className="bg-gray">
                     <DashboardMenu className="flex-colum" url={url}></DashboardMenu>
                 </Col>
                 <Col md="8" lg="9">
-                    <Row xs={1} md={2} lg={3} className="package-container g-4">
-                        {!user.mail ? <ManageAllOrder></ManageAllOrder> :
-                            <ManageOrder></ManageOrder>
-                        }
+                    <Row className="package-container g-4">
+                        {admin ? <ManageAllOrder></ManageAllOrder> :
+                            <ManageOrder></ManageOrder>}
+                
                     </Row>
                 </Col>
             </Row>

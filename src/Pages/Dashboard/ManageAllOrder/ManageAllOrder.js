@@ -1,43 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { Button, Spinner, Table } from "react-bootstrap";
 import useAuth from "../../Hooks/useAuth";
+import OrderItem from "../OrderItem/OrderItem";
 
 const ManageAllOrder = () => {
-    const {user, isLoading} = useAuth();
+
+    const {user, admin, isLoading, authToken} = useAuth();
     const [orders, setOrders] = useState([]);
 
+
     useEffect( () => {
-        const url = `https://sheltered-badlands-24462.herokuapp.com/orders?email=${user.email}`;
-        fetch(url)
+        const url = `https://sheltered-badlands-24462.herokuapp.com/orders`;
+        fetch(url, {
+            headers: {
+                'authorization': `Bearer ${authToken}`,
+            }
+        })
         .then(res => res.json())
         .then(data => {
             setOrders(data);
-            console.log(data)
-            console.log(orders)
         });
-    }, []);
+    }, [user.email, orders]);
 
-    if(orders.length > 0 ) {
-        console.log(orders)
-    } else {
-        console.log(orders)
-    }
-
-    
     return (
         <div>
-            <h2>Manage All Orders is :</h2>
+            <h2 className= "text-primary mrgn-hdr">Manage All Orders </h2>
 
-            {!isLoading && <Table striped bordered hover>
-                {/* <tbody>
-                    {orders.map( order => {<tr>
-                        <td>img</td>
-                        <td>name</td>
-                        <td><Button>Update Order</Button></td>
-                        <td><Button>Cancke Order</Button></td>
-                    </tr>})}
-                </tbody> */}
-            </Table>}
+            <div className= "Carditem list-bg">
+                <h5>Image</h5>
+                <h5>Name</h5>
+                <h5>Price</h5>
+                <h5>Status</h5>
+                <h5>Cancel Orders</h5>
+            </div>
+
+                {!isLoading && orders.length > 0 && orders.map( order => <OrderItem 
+                    key = {order._id} 
+                    order = {order}
+                ></OrderItem>)}
+
            {isLoading && <Spinner animation="grow" variant="info" />}
         </div>
     );

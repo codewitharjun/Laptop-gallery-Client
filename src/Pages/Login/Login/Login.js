@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { Button, Spinner} from "react-bootstrap";
 import { Link, useLocation, useHistory} from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import NavBar from "../../Home/NavBar/NavBar";
 
 const Login = () => {
     
@@ -30,6 +31,7 @@ const Login = () => {
 
     return (
        <div className="bg-lred">
+           <NavBar></NavBar>
             <h2 className="text-primary pt-3">Please Login</h2>
            {!isLoading &&  <div>
                <form onSubmit={handleEmailLogIn}>
@@ -40,9 +42,9 @@ const Login = () => {
                    <input className="my-2" type="submit" name="" value="Login"/>
                </form>
                <p className="text-danger">{error}</p>
-               <p>New to Laptop Gallery? <Link style={{textDecoration: 'none'}} to="/register">Register Here</Link></p>
+               <p className="text-primary">New to Laptop Gallery? <Link style={{textDecoration: 'none'}} to="/register">Register Here</Link></p>
                <p className="mt-5 text-success">You can also Login using Google</p>
-               <Button className="mb-5" onClick={handleGoogleLogIn} variant="warning"><i className="fab fa-google google-style"></i></Button>
+               <Button className="mb-5" onClick={handleGoogleLogIn} variant="warning"><i className="fab fa-google google-style"></i>Google login</Button>
            </div>}
            {isLoading && <Spinner animation="grow" variant="info" />}
        </div>

@@ -1,47 +1,42 @@
 import React from "react";
-import { Button, Card, Col, Nav } from "react-bootstrap";
+import { Button, Card, Col, Nav, Row, Spinner } from "react-bootstrap";
 import { HashLink } from "react-router-hash-link";
+import useAuth from "../../Hooks/useAuth";
 
 const Product = ({item, addToCart}) => {
     const {_id, productName, display, ram, ssd, price, description, img, reating} = item;
-    
-    console.log(item, _id)
+    const {isLoading} = useAuth();
+    console.log(isLoading);
 
     return (
-        <Col>
-            <Card>
-                <Card.Img variant="top" src={img} />
-                <Card.Body>
-                    <Card.Title className="package">{productName}</Card.Title>
-                    <Card.Text className="package">{display}</Card.Text>
-                    <Card.Text className="package">{ram}</Card.Text>
-                    <Card.Text className="package">{ssd}</Card.Text>
-                    <Card.Text className="package">{description}</Card.Text>
-                    <Card.Text className="package">{reating}</Card.Text>
-                    <Card.Text className="package">{price}</Card.Text>
-                    <div  className="package-btn">
-                        <Nav.Link as={HashLink} to={`details/${_id}`}>
-                            <Button variant="warning">More Details</Button>
-                        </Nav.Link>
-                        <Nav.Link as={HashLink} to='/buynaw'>
-                            <Button variant="warning">Buy Now</Button>
-                        </Nav.Link>
-                    </div>
-                </Card.Body>
-            </Card>
-        </Col>
+        <div>
+            {!isLoading && <Nav.Link className="p-lr-20" as={HashLink} to={`/details/${_id}`}>
+                <Col>
+                    <Card  bg="Light">
+                        <Card.Img className="p-2" variant="top" src={img} />
+                        <br/>
+                        <Card.Body>
+                            <Card.Title className="package">{productName}</Card.Title>
+                            <Card.Text className="package text-muted">
+                                <Row>
+                                    <Col sm={6}>Ram: {ram}GB DDR-4</Col>
+                                    <Col sm={6}>Disc: {ssd}GB</Col>
+                                </Row>
+                            </Card.Text>
+                            <Card.Text className="package text-muted" variant="primary">
+                                <Row>
+                                    <Col sm={6}>Price: ${price}</Col>
+                                    <Col sm={6}>{reating}</Col>
+                                </Row>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Nav.Link>}
+           {isLoading && <Spinner animation="grow" variant="info" />}
+        </div>
     );
+    
 };
 
 export default Product;
-
-// .package {
-//     margin: 0;
-//     padding: 2px 0;
-// }
-
-// .package-btn {
-//     display: flex;
-//     justify-content: space-around;
-//     padding-top: 12px;
-// }

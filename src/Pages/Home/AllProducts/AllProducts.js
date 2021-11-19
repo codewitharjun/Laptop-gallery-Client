@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
 import AllProduct from "../AllProduct/AllProduct";
+import ProRightNav from "../AllProducts/ProRightNav/ProRightNav";
 import useAuth from "../../Hooks/useAuth";
+import Product from "../Product/Product";
 
 const AllProducts = () => {
 
-    const {isLoading} = useAuth()
+    const {user, isLoading} = useAuth()
+    // const {laptops} = LoadAllData();
+    
     const [laptops, setLaptops] = useState([]);
 
     useEffect( () => {
@@ -13,39 +17,40 @@ const AllProducts = () => {
         .then(res => res.json())
         .then(data => {
             setLaptops(data)
-            console.log(data)
         });
-    }, []);
+    }, [user.email]);
 
     const addToCart = item => {
         alert('Add to cart click');
-        console.log(item);
     };
+    console.log(laptops);
 
     return (
-        <div>
+        <div className= "bg-lred3">
             <div className="mt-4">
-            <h1 className="my-4">Our Laptop Gallery</h1>
-            <Row xs={1} md={2} className="w-100">
-                <Col md="4" lg="3" bg="primary">
-                    <Row className="bulleting-container">
-                        <h2>Left sight</h2>
-                    </Row>
-                </Col>
-                <Col md="8" lg="9">
-                    <Row xs={1} md={2} lg={3} className="package-container g-4">
-                        {!isLoading &&
-                            laptops.map( item => <AllProduct
-                                key={item._id} 
-                                item={item} 
-                                addToCart={addToCart}
-                                ></AllProduct>)
-                        }
-                        {isLoading && <Spinner animation="grow" variant="info" />}
-                    </Row>
-                </Col>
-            </Row>
-        </div>
+                <div className="allImg">
+                    <img className="imgstl" src="https://i.ibb.co/4Vn42Qx/1f8b727fd27e298a.jpg" alt="" ></img>
+                </div>
+                <h1 className="text-primary pt-3 my-4" >Our Laptop Gallery</h1>
+                <Row xs={1} md={2} className="w-100">
+                    <Col className="bg-lftbr" md="4" lg="3" bg="primary">
+                            <h3 className="text-primary pt-2">Select by catagory</h3>
+                            <ProRightNav></ProRightNav>
+                    </Col>
+                    <Col md="8" lg="9">
+                        <Row xs={1} md={2} lg={3} className="package-container">
+                            {!isLoading &&
+                                laptops.map( item => <Product
+                                    key={item._id} 
+                                    item={item} 
+                                    addToCart={addToCart}
+                                    ></Product>)
+                            }
+                            {isLoading && <Spinner animation="grow" variant="info" />}
+                        </Row>
+                    </Col>
+                </Row>
+            </div>
         </div>
     );
 };

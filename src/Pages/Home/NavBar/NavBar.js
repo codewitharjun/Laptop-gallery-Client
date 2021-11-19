@@ -13,7 +13,7 @@ const NavBar = () => {
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" >
           <Container>
-              <Navbar.Brand href="#home">Laptop Gallery</Navbar.Brand>
+              <Navbar.Brand><Nav.Link as={HashLink} to="/home">Laptop Gallery</Nav.Link></Navbar.Brand>
               <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                   <Nav.Link as={HashLink} to="/home">Home</Nav.Link>

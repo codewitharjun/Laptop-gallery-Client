@@ -4,9 +4,13 @@ import {
     Route,
     useRouteMatch
 } from "react-router-dom";
+import AdminRoute from "../../Login/AdminRoute/AdminRoute";
 import AddAdmin from "../AddAdmin/AddAdmin";
 import AddProduct from "../AddProduct/AddProduct";
 import DashboardHome from "../DashboardHome/DashboardHome";
+import ShopReating from "../ShopReating/ShopReating";
+import Home from "../../Home/Home/Home";
+
 
 const Dashboard = () => {
 
@@ -20,15 +24,21 @@ const Dashboard = () => {
     return (
         <div>
             <Switch>
+                <Route exact path="/">
+                    <Home></Home>
+                </Route>
                 <Route exact path={path}>
                     <DashboardHome url={url}></DashboardHome>
                 </Route>
-                <Route path={`${path}/addadmin`}>
+                <Route exact path={`${path}/shopreating`}>
+                    <ShopReating></ShopReating>
+                </Route>
+                <AdminRoute path={`${path}/addadmin`}>
                     <AddAdmin></AddAdmin>
-                </Route>
-                <Route path={`${path}/addproduct`}>
+                </AdminRoute>
+                <AdminRoute path={`${path}/addproduct`}>
                     <AddProduct></AddProduct>
-                </Route>
+                </AdminRoute>
             </Switch>
         </div>
     );

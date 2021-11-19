@@ -1,11 +1,15 @@
 import React, {useState} from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
+import { useHistory } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 import DashboardMenu from "../DashboardMenu/DashboardMenu";
 import DashboardNav from "../DashboardNav/DashboardNav";
 
 const AddAdmin = () => {
 
     const [email, setEmail] = useState('');
+    const {authToken, isLoading} = useAuth();
+    const history = useHistory();
 
 
     const handleCollectData = e => {
@@ -13,33 +17,35 @@ const AddAdmin = () => {
     }
     
     const handleAddAdmin = e => {
-        e.preventDefault();
-        // console.log(data);
         console.log(email);
-        alert('Add Admin successfully');
-        // // sent data to server for Add an Item
-        // fetch('https://sheltered-badlands-24462.herokuapp.com/laptops', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(addItem)
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     console.log(data);
-        // })
-    }
+        const user = {email};
+        // sent data to server for Add an Item 
+        fetch('https://sheltered-badlands-24462.herokuapp.com/users/admin', {
+            method: 'PUT',
+            headers: {
+                'authorization': `Bearer ${authToken}`,
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            alert('Add Admin successfully')
+            history.replace('/dashboard');
+        })
+        e.preventDefault();
+}
     
     return (
-        <div>
+        <div className="bg-lred2">
             <DashboardNav></DashboardNav>
             <Row xs={1} md={2} className="w-100">
                 <Col md="3" lg="2" className="bg-gray">
                     <DashboardMenu className="flex-colum"></DashboardMenu>
                 </Col>
-                <Col md="8" lg="9">
-                    <Row xs={1} md={2} lg={3} className="package-container g-4">
+               {!isLoading && <Col md="8" lg="9">
+                    <Row className="package-container g-4">
                         <div className="add-package">
                             <br/>
                             <br/>
@@ -54,7 +60,8 @@ const AddAdmin = () => {
                             </form>
                         </div>
                     </Row>
-                </Col>
+                </Col>}
+                {isLoading && <Spinner animation="grow" variant="info" />}
             </Row>
         </div>
     );

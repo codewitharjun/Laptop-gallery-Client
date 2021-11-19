@@ -9,6 +9,9 @@ const Home = () => {
         <div>
             <NavBar></NavBar>
             <NavCarousel></NavCarousel>
+            <div className="allImg">
+                <img className="imgstl" src="https://i.ibb.co/GMzFRch/ls.jpg" alt='' />
+            </div>
             <Products></Products>
             <Footer></Footer>
         </div>

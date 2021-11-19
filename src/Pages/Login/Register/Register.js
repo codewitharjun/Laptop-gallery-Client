@@ -2,6 +2,7 @@ import React, {useState } from "react";
 import { Alert, Button, Spinner } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import NavBar from "../../Home/NavBar/NavBar";
 
 
 const Register = () => {
@@ -37,6 +38,7 @@ const Register = () => {
     return (
 
         <div className="bg-lred">
+            <NavBar></NavBar>
             <h2 className="text-primary pt-3">Register: Create Account</h2>
             {!isLoading && <div>
                 <form onSubmit={handleRegistration}>
